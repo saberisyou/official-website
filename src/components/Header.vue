@@ -2,14 +2,14 @@
   <!-- 头部整体盒子 -->
   <div id="header" class="container-fuild">
     <!-- 头部顶部 -->
-<!--    <div class="header-top container-fuild hidden-xs">-->
-<!--      <div class="container">-->
-<!--        <div class="server pull-left">-->
-<!--          <span class="glyphicon glyphicon-earphone"></span>{{ phone }}-->
-<!--          <span class="glyphicon glyphicon-envelope"></span>{{ email }}-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div class="header-top container-fuild hidden-xs">-->
+    <!--      <div class="container">-->
+    <!--        <div class="server pull-left">-->
+    <!--          <span class="glyphicon glyphicon-earphone"></span>{{ phone }}-->
+    <!--          <span class="glyphicon glyphicon-envelope"></span>{{ email }}-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <!-- 电脑导航 -->
     <div class="header-nav container hidden-xs">
       <!-- 导航logo -->
@@ -43,11 +43,7 @@
     <!-- 手机导航 -->
     <div class="header-nav-m container-fuild visible-xs">
       <div class="header-nav-m-logo">
-        <img
-          class="center-block"
-          src="@/assets/img/logo_black.png"
-          alt="logo"
-        />
+        <img class="center-block" src="@/assets/img/template.png" alt="logo" />
       </div>
       <!-- 导航栏 -->
       <div class="header-nav-m-menu text-center">
@@ -102,11 +98,11 @@ const navList = [
     path: '/service',
     children: []
   },
-  // {
-  //   name: '新闻动态',
-  //   path: '/newsinformation',
-  //   children: []
-  // },
+  {
+    name: 'Pricing',
+    path: '/pricing',
+    children: []
+  },
   {
     name: 'About us',
     path: '/aboutus',
@@ -195,13 +191,12 @@ function menuClick() {
   line-height: 110px;
   float: right;
   margin: 0;
-  max-width: 800px;
 }
 
 /* 导航栏 每个导航 */
 #header .header-nav .header-nav-wrapper > li {
   float: left;
-  margin: 0 12px;
+  margin: 0 8px;
   position: relative;
 }
 
@@ -305,8 +300,7 @@ function menuClick() {
 
   /* 导航栏logo图片 */
   #header .header-nav-m .header-nav-m-logo img {
-    width: 95px;
-    height: 45px;
+    height: 60px;
     position: absolute;
     top: 0;
     left: 0;
@@ -370,4 +364,3 @@ function menuClick() {
   }
 }
 </style>
-

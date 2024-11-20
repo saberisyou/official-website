@@ -28,6 +28,15 @@ const routes = [
         }
       },
       {
+        path: '/pricing',
+        name: 'pricing',
+        component: () => import('@/view/Pricing.vue'),
+        props: true,
+        meta: {
+          title: 'pricing'
+        }
+      },
+      {
         path: '/service',
         name: 'service',
         component: () => import('@/view/Service.vue'),

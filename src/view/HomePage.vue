@@ -233,7 +233,7 @@ const customerList = [
     logo: logo_kk,
     title: '',
     content:
-      'Overall, we are thrilled with the results and would highly recommend [Your Company Name] to anyone looking for top-notch video production and creative solutions. Their expertise, creativity, and commitment to excellence have made a significant impact on our brand, and we look forward to working with them again in the future.'
+      `Overall, we are thrilled with the results and would highly recommend ${company} to anyone looking for top-notch video production and creative solutions. Their expertise, creativity, and commitment to excellence have made a significant impact on our brand, and we look forward to working with them again in the future.`
   },
 ]
 
