@@ -1,27 +1,38 @@
 <template>
   <div class="pay-btn">
     <form
+      ref="formRef"
       id="orderForm"
       action="http://api.reliancepay.cfd/Cashier/api"
       method="post"
     >
-      <input
-        type="hidden"
-        id="amount"
-        name="amount"
-        th:value="${orderDetailVO.totalPrice}"
-      />
+      <input type="hidden" id="amount" name="amount" :value="formData.amount" />
       <input type="hidden" id="merId" name="mer_id" value="1000" />
       <input
         type="hidden"
         id="orderNoValue"
         name="mer_no"
-        th:value="${orderDetailVO.orderNo}"
+        :value="formData.mer_no"
       />
-      <input type="hidden" id="notifyurl" name="notifyurl" value="1" />
-      <input type="hidden" id="paytype" name="paytype" value="2" />
-      <input type="hidden" id="timestamp" name="timestamp" value="" />
-      <input type="hidden" id="sign" name="sign" value="" />
+      <input
+        type="hidden"
+        id="notifyurl"
+        name="notifyurl"
+        :value="formData.notifyurl"
+      />
+      <input
+        type="hidden"
+        id="paytype"
+        name="paytype"
+        :value="formData.paytype"
+      />
+      <input
+        type="hidden"
+        id="timestamp"
+        name="timestamp"
+        :value="formData.timestamp"
+      />
+      <input type="hidden" id="sign" name="sign" :value="formData.sign" />
     </form>
 
     <div @click="payOrder">
@@ -33,10 +44,11 @@
 <script setup>
 import md5 from 'crypto-js/md5'
 import qs from 'qs'
-import { toRefs } from 'vue'
+import { nextTick, ref, toRefs } from 'vue'
 
 const props = defineProps(['amount', 'orderNo'])
 
+const formRef = ref()
 const formData = ref({
   amount: '', // 金额
   mer_id: '1000',
@@ -47,10 +59,10 @@ const formData = ref({
 })
 
 function payOrder() {
-  const { amount, orderNo } = toRefs(props)
+  const { amount } = toRefs(props)
 
-  formData.value.amount = amount
-  formData.value.mer_no = orderNo
+  formData.value.amount = amount.value
+  formData.value.mer_no = md5(new Date().getTime()).toString()
   formData.value.timestamp = new Date().getTime()
   // 将参数按照key值排序后取md5作为sign参数传入表单
   const sign = md5(
@@ -60,5 +72,8 @@ function payOrder() {
     .toUpperCase()
   formData.value.sign = sign
   // 提交表单
+  nextTick(()=> {
+    formRef.value.submit()
+  })
 }
 </script>

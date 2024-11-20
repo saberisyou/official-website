@@ -16,8 +16,10 @@
             <div class="Pricing-item-top">
               {{ item.title }}
             </div>
-            <div class="Pricing-item-price">PHP{{ item.price }}</div>
-            <div class="Price-buy" :class="`buy_${index}`">Buy Now</div>
+            <div class="Pricing-item-price">PHP{{ item.unit + formatPrice(item.price) }}</div>
+            <PayForm :amount="item.price">
+              <div class="Price-buy" :class="`buy_${index}`">Buy Now</div>
+            </PayForm>
             <div v-for="tt in item.list" class="Pricing-item-list">
               <h4>{{ tt.title }}</h4>
               <p>{{ tt.content }}</p>
@@ -30,11 +32,13 @@
 </template>
 <script setup name="Pricing">
 import { useRouter } from 'vue-router'
+import PayForm from './PayForm.vue';
 const serviceList = [
   {
     id: 'section-1',
     title: 'Basic Package',
-    price: '₱10,000',
+    price: '10000',
+    unit: '₱',
     list: [
       {
         title: 'Quick Turnaround',
@@ -57,7 +61,8 @@ const serviceList = [
   {
     id: 'section-2',
     title: 'Advanced Package',
-    price: '₱30,000',
+    price: '30000',
+    unit: '₱',
     list: [
       {
         title: 'Comprehensive Design Services',
@@ -79,7 +84,8 @@ const serviceList = [
   {
     id: 'section-3',
     title: 'Custom Package',
-    price: '₱50,000',
+    price: '50000',
+    unit: '₱',
     list: [
       {
         title: 'Fully Customized Design',
@@ -109,6 +115,12 @@ function ServiceClick(id) {
   //     id
   //   }
   // })
+}
+function formatPrice(value) {
+  if (!value) {
+    return '0'
+  }
+  return parseFloat(value).toLocaleString()
 }
 </script>
 <style scoped>
